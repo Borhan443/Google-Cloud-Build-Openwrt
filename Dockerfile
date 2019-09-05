@@ -11,8 +11,10 @@ WORKDIR /home/user
 
 # set dummy git config
 RUN git config --global user.name "user" && git config --global user.email "user@example.com" &&\
-    git clone https://github.com/cnZary/lede.git &&\
+    git clone https://github.com/coolsnowwolf/lede &&\
     cd lede &&\
+    wget https://raw.githubusercontent.com/cnZary/Google-Cloud-Build-Openwrt/master/.config &&\
     ./scripts/feeds update -a &&\
     ./scripts/feeds install -a &&\
+    make oldconfig &&\
     make
